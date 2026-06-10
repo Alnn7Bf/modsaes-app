@@ -43,19 +43,23 @@ Si deseas ejecutar el proyecto desde el código fuente:
 
 1. Clona este repositorio:
   ```bash
-  git clone <URL_DEL_REPO>
+  git clone <https://github.com/Alnn7Bf/modsaes-app>
+  ```
 
 2. Instala dependencias:
   ```bash
   npm install
+  ```
 
 3. Compila el proyecto:
   ```bash
   npm run build
+  ```
 
 4. Abre Chrome y entra a:
   ```bash
   chrome://extensions/
+  ```
 
 5. Activa “Modo desarrollador”.
 
