@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Mod Saes",
+    "version": "1.0.0",
+    "description": "Modificador del SAES IPN / React",
+    "icons": {
+        "128": "icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches" : ["*://*.ipn.mx/Academica/horarios.aspx"], 
+            "js": ["content.js"], 
+            "run_at": "document_idle"
+        }
+    ]
+}
