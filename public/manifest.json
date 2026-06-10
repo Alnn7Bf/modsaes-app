@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Mod Saes",
+    "name": "Mod Saes (IPN SAES Helper)",
     "version": "1.0.0",
-    "description": "Modificador del SAES IPN / React",
+    "description": "Modificador del SAES IPN",
     "icons": {
         "128": "icon.png"
     },

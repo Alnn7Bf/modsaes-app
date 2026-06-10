@@ -6,28 +6,28 @@ Su objetivo es reducir fricción en la consulta de información académica, ofre
 
 ---
 
-## ✨ Características
+## Características
 
-- 📅 Visualización clara y estructurada de horarios.
-- ⚡ Detección de empalmes entre materias en tiempo real.
-- 🧠 Selección dinámica de materias con actualización inmediata.
-- 💾 Persistencia de selección mediante `sessionStorage`.
-- 🎨 Interfaz minimalista tipo overlay, enfocada en usabilidad.
-- 🔄 Renderizado dinámico de tablas sin recargar la página.
+- Visualización clara y estructurada de horarios.
+- Detección de empalmes entre materias en tiempo real.
+- Selección dinámica de materias con actualización inmediata.
+- Persistencia de selección mediante `sessionStorage`.
+- Interfaz minimalista tipo overlay, enfocada en usabilidad.
+- Renderizado dinámico de tablas sin recargar la página.
 
 ---
 
-## 🧱 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - React + TypeScript
 - Vite (build system)
 - Chrome Extensions API (Manifest V3)
 - DOM Manipulation (content scripts)
-- CSS moderno para UI overlay
+- Tailwind CSS
 
 ---
 
-## 🚀 Instalación desde Chrome Web Store
+## Instalación desde Chrome Web Store
 
 1. Abre la [Chrome Web Store](https://chrome.google.com/webstore).
 2. Busca **ModSaes**.
@@ -37,13 +37,13 @@ Su objetivo es reducir fricción en la consulta de información académica, ofre
 
 ---
 
-## 🛠️ Instalación en modo desarrollo
+## Instalación en modo desarrollo
 
 Si deseas ejecutar el proyecto desde el código fuente:
 
 1. Clona este repositorio:
   ```bash
-  git clone <https://github.com/Alnn7Bf/modsaes-app>
+  git clone https://github.com/Alnn7Bf/modsaes-app
   ```
 
 2. Instala dependencias:
@@ -67,7 +67,7 @@ Si deseas ejecutar el proyecto desde el código fuente:
 
 ---
 
-## 📌 Uso
+## Uso
 
 1. Abre SAES del IPN.
 2. Activa la extensión.
@@ -77,16 +77,7 @@ Si deseas ejecutar el proyecto desde el código fuente:
 
 ---
 
-## 🧠 Arquitectura
-
-- Content Script: inyecta la UI en SAES.
-- React UI: renderiza la interfaz.
-- Vite: compila el proyecto.
-- Manifest V3: configuración de la extensión.
-
----
-
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo licencia MIT.
 
