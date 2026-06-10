@@ -1,75 +1,89 @@
-# React + TypeScript + Vite
+# ModSaes - Chrome Extension (IPN SAES Helper)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ModSaes es una extensión para Google Chrome diseñada para mejorar la experiencia dentro de la plataforma **SAES del IPN**, facilitando la visualización, organización y gestión de horarios y materias.
 
-Currently, two official plugins are available:
+Su objetivo es reducir fricción en la consulta de información académica, ofreciendo una interfaz más clara, rápida y funcional para estudiantes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Características
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- 📅 Visualización clara y estructurada de horarios.
+- ⚡ Detección de empalmes entre materias en tiempo real.
+- 🧠 Selección dinámica de materias con actualización inmediata.
+- 💾 Persistencia de selección mediante `sessionStorage`.
+- 🎨 Interfaz minimalista tipo overlay, enfocada en usabilidad.
+- 🔄 Renderizado dinámico de tablas sin recargar la página.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## 🧱 Tecnologías utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- Vite (build system)
+- Chrome Extensions API (Manifest V3)
+- DOM Manipulation (content scripts)
+- CSS moderno para UI overlay
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🚀 Instalación desde Chrome Web Store
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Abre la [Chrome Web Store](https://chrome.google.com/webstore).
+2. Busca **ModSaes**.
+3. Haz clic en **Añadir a Chrome**.
+4. Confirma la instalación.
+5. La extensión aparecerá en la barra de herramientas del navegador.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Instalación en modo desarrollo
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Si deseas ejecutar el proyecto desde el código fuente:
+
+1. Clona este repositorio:
+  ```bash
+  git clone <URL_DEL_REPO>
+
+2. Instala dependencias:
+  ```bash
+  npm install
+
+3. Compila el proyecto:
+  ```bash
+  npm run build
+
+4. Abre Chrome y entra a:
+  ```bash
+  chrome://extensions/
+
+5. Activa “Modo desarrollador”.
+
+6. Carga la carpeta `dist/`.
+
+---
+
+## 📌 Uso
+
+1. Abre SAES del IPN.
+2. Activa la extensión.
+3. Selecciona tus materias.
+4. Visualiza tu horario automáticamente.
+5. Evita empalmes con validación integrada.
+
+---
+
+## 🧠 Arquitectura
+
+- Content Script: inyecta la UI en SAES.
+- React UI: renderiza la interfaz.
+- Vite: compila el proyecto.
+- Manifest V3: configuración de la extensión.
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo licencia MIT.
+
+Consulta el archivo LICENSE para más detalles.
