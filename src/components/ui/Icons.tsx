@@ -1,9 +1,9 @@
-interface iconProps {
+interface IconProps {
     size: number;
     status?: boolean;
 }
 
-export const PlusIcon = ({ size, status } : iconProps) => {
+export const PlusIcon = ({ size, status } : IconProps) => {
     return  <>
         <svg 
             width={size} 
@@ -20,7 +20,43 @@ export const PlusIcon = ({ size, status } : iconProps) => {
     </>
 };
 
-export const GitHubIcon = ({ size } : iconProps) => {
+export const BackSpaceIcon = ({ size } : IconProps) => {
+    return  <>
+        <svg 
+            width={size} 
+            height={size} 
+            fill="none" 
+            stroke="currentColor" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth="1.5" 
+            viewBox="0 0 24 24"
+        >
+            <path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426"></path>
+        </svg>
+    </>
+};
+
+export const SearchIcon = ({ size } : IconProps) => {
+    return  <>
+        <svg 
+            width={size} 
+            height={size} 
+            fill="none" 
+            stroke="currentColor" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth="1.5" 
+            viewBox="0 0 24 24"
+        >
+            <path d="M17 17L21 21"></path>
+            <path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z"></path>
+                    
+        </svg>
+    </>
+};
+
+export const GitHubIcon = ({ size } : IconProps) => {
     return  <>
         <svg 
             width={size} 
@@ -38,7 +74,7 @@ export const GitHubIcon = ({ size } : iconProps) => {
     </>
 };
 
-export const InstagramIcon = ({ size } : iconProps) => {
+export const InstagramIcon = ({ size } : IconProps) => {
     return  <>
         <svg 
             width={size} 
@@ -57,7 +93,7 @@ export const InstagramIcon = ({ size } : iconProps) => {
     </>
 };
 
-export const RemoveIcon = ({ size } : iconProps) => {
+export const RemoveIcon = ({ size } : IconProps) => {
     return  <>
         <svg 
             width={size} 
@@ -69,7 +105,27 @@ export const RemoveIcon = ({ size } : iconProps) => {
             strokeWidth="1.5" 
             viewBox="0 0 24 24"
         >
-            <path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426"></path>
+            <path d="M20 9L18.005 20.3463C17.8369 21.3026 17.0062 22 16.0353 22H7.96474C6.99379 22 6.1631 21.3026 5.99496 20.3463L4 9"></path>
+            <path d="M21 6L15.375 6M3 6L8.625 6M8.625 6V4C8.625 2.89543 9.52043 2 10.625 2H13.375C14.4796 2 15.375 2.89543 15.375 4V6M8.625 6L15.375 6"></path>
+        </svg>
+    </>
+};
+
+export const WarningIcon = ({ size } : IconProps) => {
+    return  <>
+        <svg 
+            width={size} 
+            height={size} 
+            fill="none" 
+            stroke="currentColor" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth="1.5" 
+            viewBox="0 0 24 24"
+        >
+            <path d="M12 7L12 13"></path>
+            <path d="M12 17.01L12.01 16.9989"></path>
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"></path>
         </svg>
     </>
 };

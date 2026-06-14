@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import type { Subject } from "./types/Subject";
+import type { Subject } from "./types/types";
 import App from "./App";
 import "./index.css";
 
@@ -8,6 +8,11 @@ const panel = "my-panel";
 const PANEL_ID = "copy";
 
 let rootElement = document.getElementById(panel) as HTMLTableRowElement | null;
+
+if (rootElement && !document.contains(rootElement)) {
+  rootElement = null;
+  (window as any).__saesRoot = null;
+}
 
 if (!rootElement) {
   const tbody = document.querySelector(
@@ -29,7 +34,10 @@ if (!rootElement) {
 }
 
 if (rootElement) {
-  createRoot(rootElement).render(
+  const root = (window as any).__saesRoot ?? createRoot(rootElement);
+  (window as any).__saesRoot = root;
+  
+  root.render(
     <StrictMode>
       <App />
     </StrictMode>
@@ -37,19 +45,9 @@ if (rootElement) {
 }
 
 (() => {
-  const table = document.getElementById("ctl00_mainCopy_dbgHorarios");
+  const panel = document.getElementById("ctl00_mainCopy_Panel1");
 
-  if (!table) return;
-
-  const tableRow = table.parentElement?.parentElement?.parentElement?.parentElement;
-
-  tableRow?.classList.add('hidden!');
-
-  const tbody = table.querySelector("tbody");
-
-  if (!tbody) return;
-
-  const rows = [...tbody.querySelectorAll("tr")];
+  if(!panel) return;
 
   // ===== FILTROS ACTUALES =====
 
@@ -75,22 +73,48 @@ if (rootElement) {
 
   localStorage.setItem("saesCurrentPage", JSON.stringify(currentPage));
 
+  // ===== BUSCAR TABLA =====
+
+  const table = document.getElementById("ctl00_mainCopy_dbgHorarios");
+  
+  if(!table) {
+    console.log("No existen grupos para este filtro.");
+
+    const existing: Subject[] = JSON.parse(localStorage.getItem("saesSubjects") || "[]");
+
+    const cleaned = existing.filter(item => {
+      const itemFilter = `${item.career}-${item.shift}-${item.plan}-${item.semester}`;
+      return itemFilter !== currentFilter;
+    });
+
+    localStorage.setItem("saesSubjects", JSON.stringify(cleaned));
+    return;
+  }
+
+  const tableRows = table.closest("tr");
+  tableRows?.classList.add("hidden");
+
+  const tbody = table.querySelector("tbody");
+  if(!tbody) return;
+
+  const dataRows = [...tbody.querySelectorAll("tr")].slice(1);
+
   // ===== EXTRAER TABLA =====
 
-  const subjects : Subject[] = rows.slice(1).map((row) => {
+  const subjects : Subject[] = dataRows.map((row) => {
     const cells = row.children;
     
-    const group = cells[0]?.textContent.trim() || "";
-    const subject = cells[1]?.textContent.trim() || "";
-    const teacher = cells[2]?.textContent.trim() || "";
-    const building = cells[3]?.textContent.trim() || "";
-    const classroom = cells[4]?.textContent.trim() || "";
-    const monday = cells[5]?.textContent.trim() || "";
-    const tuesday = cells[6]?.textContent.trim() || "";
-    const wednesday = cells[7]?.textContent.trim() || "";
-    const thursday = cells[8]?.textContent.trim() || "";
-    const friday = cells[9]?.textContent.trim() || "";
-    const saturday = cells[10]?.textContent.trim() || "";
+    const group = cells[0]?.textContent?.trim() || "";
+    const subject = cells[1]?.textContent?.trim() || "";
+    const teacher = cells[2]?.textContent?.trim() || "";
+    const building = cells[3]?.textContent?.trim() || "";
+    const classroom = cells[4]?.textContent?.trim() || "";
+    const monday = cells[5]?.textContent?.trim() || "";
+    const tuesday = cells[6]?.textContent?.trim() || "";
+    const wednesday = cells[7]?.textContent?.trim() || "";
+    const thursday = cells[8]?.textContent?.trim() || "";
+    const friday = cells[9]?.textContent?.trim() || "";
+    const saturday = cells[10]?.textContent?.trim() || "";
 
     const id = `${currentFilter}-${group}-${teacher}-${subject}`;
 
@@ -122,28 +146,21 @@ if (rootElement) {
 
   // ===== GUARDAR EN LOCAL STORAGE =====
 
-  const existing = JSON.parse(localStorage.getItem("saesSubjects") || "[]");
-
-  // eliminar solo datos del mismo filtro
-  const filtered = existing.filter((item : Subject) => {
+  const existing : Subject[] = JSON.parse(localStorage.getItem("saesSubjects") || "[]");
+  
+  const withoutCurrentFilter = existing.filter(item => {
     const itemFilter = `${item.career}-${item.shift}-${item.plan}-${item.semester}`;
 
     return itemFilter !== currentFilter;
   });
 
-  // combinar
   const updatedStorage = [
-    ...filtered,
+    ...withoutCurrentFilter,
     ...subjects
   ];
 
   localStorage.setItem(
     "saesSubjects",
     JSON.stringify(updatedStorage)
-  );
-
-  console.log(
-    "Materias guardadas:",
-    subjects.length
   );
 })();
