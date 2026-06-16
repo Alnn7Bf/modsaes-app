@@ -3,7 +3,7 @@ import type { ListBlock } from "../../types/types";
 
 interface PanelProps {
     listBlocks: ListBlock[];
-    active: string;
+    active: string | null;
     setActive: (id: string) => void;
     remove: (id : string) => void;
 }
@@ -17,8 +17,8 @@ export default function ListPanel({ listBlocks, active, setActive, remove } : Pa
                     listBlocks.map(block => (
                         <ListElement 
                             key={block.id}
-                            active={active === '' || active === block.id}
-                            setActive={() => setActive(block.id)}
+                            isVisible={ !active || active === block.id }
+                            onToggle={() => setActive(block.id)}
                             subject={block.subject}
                             teacher={block.teacher}
                             group={block.group}

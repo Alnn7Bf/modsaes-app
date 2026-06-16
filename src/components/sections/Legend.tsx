@@ -2,10 +2,11 @@ import ButtonElement from "../ui/ButtonElement";
 import { variantStyle } from "../../types/types";
 
 interface LegendProps {
+    onSave: () => void;
     onClose: () => void;
 }
 
-export default function Legend({ onClose } : LegendProps) {
+export default function Legend({ onSave, onClose } : LegendProps) {
     return (
         <div className="flex flex-3 items-center justify-center">
             <div className="grid grid-rows-2 bg-foreground/30 gap-x-10 gap-y-3 p-3!">
@@ -25,11 +26,11 @@ export default function Legend({ onClose } : LegendProps) {
                     <span className={`flex ${variantStyle['repeated']} size-5`}></span>
                     <p className="m-0! text-background">Repetido</p>
                 </div>
-                <div className="flex col-start-3 row-start-1 row-span-2 gap-4 m-2! items-center" >
-                    <ButtonElement func={() => {}}>Descargar Horario</ButtonElement>
+                <div className="relative flex col-start-3 row-start-1 row-span-2 gap-4 m-2! items-center" >
+                    <ButtonElement func={onSave}>Guardar</ButtonElement>
                     <ButtonElement func={onClose}>Cerrar</ButtonElement>
                 </div>
             </div>
         </div>
-    )
+    );
 }

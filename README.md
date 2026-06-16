@@ -1,8 +1,8 @@
 # ModSaes - Chrome Extension (IPN SAES Helper)
 
-ModSaes es una extensión para Google Chrome diseñada para mejorar la experiencia dentro de la plataforma **SAES del IPN**, facilitando la visualización, organización y gestión de horarios y materias.
+ModSaes es una extensión para Google Chrome diseñada para mejorar la experiencia dentro de la plataforma **SAES del IPN**, facilitando la visualización, organización y gestión del proceso de selección materias y horarios.
 
-Su objetivo es reducir fricción en la consulta de información académica, ofreciendo una interfaz más clara, rápida y funcional para estudiantes.
+Su objetivo es reducir fricción dentro del SAES mediante una interfaz moderna, clara y funcional, permitiendo consultar información académica de manera más rápida, visual y eficiente.
 
 ---
 
@@ -12,7 +12,7 @@ Su objetivo es reducir fricción en la consulta de información académica, ofre
 - Detección de empalmes entre materias en tiempo real.
 - Selección dinámica de materias con actualización inmediata.
 - Persistencia de selección mediante `sessionStorage`.
-- Interfaz minimalista tipo overlay, enfocada en usabilidad.
+- Overlay interactivo integrado directamente sobre SAES.
 - Renderizado dinámico de tablas sin recargar la página.
 
 ---
@@ -33,7 +33,7 @@ Su objetivo es reducir fricción en la consulta de información académica, ofre
 2. Busca **ModSaes**.
 3. Haz clic en **Añadir a Chrome**.
 4. Confirma la instalación.
-5. La extensión aparecerá en la barra de herramientas del navegador.
+5. Ingresa a SAES del IPN y utiliza la extensión.
 
 ---
 

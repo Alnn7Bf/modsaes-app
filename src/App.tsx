@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
 import ButtonElement from "./components/ui/ButtonElement";
 import Overlay from "./components/layout/Overlay";
-import useDismissible from "./hooks/useDismissible";
 import usePersistentSelections from "./hooks/usePersistentSelection";
 
 import type { Subject } from "./types/types";
 import { BackSpaceIcon, SearchIcon } from "./components/ui/Icons";
+import useDismissible from "./hooks/useDismissible";
 
 export default function App() {
   const [activeOverlay, setActiveOverlay] = useState(false);
@@ -30,10 +30,10 @@ export default function App() {
   const [search, setSearch] = useState('');
 
   const searchedData = useMemo(() => {
-    const norm = search.toLowerCase().trim();
+    const content = search.toLowerCase().trim();
     
     return filteredSubjects.filter(sub => {
-      if(!norm) return true;
+      if(!content) return true;
 
       return (
         sub.subject.toLowerCase().includes(search.toLowerCase()) ||

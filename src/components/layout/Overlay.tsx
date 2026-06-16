@@ -1,9 +1,10 @@
-import ListPanel from "./ListPanel";
-import SocialMedia from "./SocialMedia";
-import Legend from "./Legend";
-import GridPanel from "./GridPanel";
+import { useState, useRef } from "react";
 import useOverlayData from "../../hooks/useOverlayData";
-import { useState } from "react";
+import GridPanel from "../sections/GridPanel";
+import ListPanel from "../sections/ListPanel";
+import Legend from "../sections/Legend";
+import SocialMedia from "../sections/SocialMedia";
+import { exportSchedulePNG } from "../../utils/exportSchedule";
 
 interface OverlayProps {
     onClose: () => void;
@@ -14,11 +15,18 @@ interface OverlayProps {
 export default function Overlay({onClose, selected, remove} : OverlayProps) {
     const { scheduleBlocks, listBlocks } = useOverlayData(selected);
 
-    const [active, setActive] = useState('');
+    const [active, setActive] = useState<string | null>(null);
 
-    const handleClick = (id: string) => {
-        active === id? setActive('') : setActive(id);
+    const handleClick = (id : string) => {
+        active === id? setActive(null) : setActive(id);
     }
+
+    const handleRemove = (id : string) => {
+        if(active === id) setActive(null);
+        remove(id);
+    }
+
+    const gridRef = useRef<HTMLDivElement>(null);
 
     return (
         <div className={`fixed z-50 top-0 left-0 h-full w-full flex flex-col items-center bg-foreground/50 backdrop-blur-xs`}>
@@ -26,11 +34,17 @@ export default function Overlay({onClose, selected, remove} : OverlayProps) {
                 <span>Presiona Esc para salir</span>
             </div>
             <div className="flex flex-row w-full justify-around gap-6 my-8!">
-                <GridPanel active={active} scheduleBlocks={scheduleBlocks}/>
-                <ListPanel listBlocks={listBlocks} active={active} setActive={handleClick} remove={remove}/>
+                <GridPanel ref={gridRef} active={active} scheduleBlocks={scheduleBlocks}/>
+                <ListPanel listBlocks={listBlocks} active={active} setActive={handleClick} remove={handleRemove}/>
             </div>
             <div className="flex flex-1 gap-3 w-full items-center justify-around">
-                <Legend onClose={onClose}/>
+                <Legend 
+                    onSave={async () => {
+                        if(!gridRef.current) return;
+                        await exportSchedulePNG(gridRef.current);
+                    }} 
+                    onClose={onClose}>
+                </Legend>
                 <SocialMedia />
             </div>
         </div>

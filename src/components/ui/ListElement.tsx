@@ -3,8 +3,8 @@ import { RemoveIcon, WarningIcon } from "./Icons";
 import  type { VariantType } from "../../types/types";
 
 interface ListProps {
-    active: boolean;
-    setActive: () => void;
+    isVisible: boolean;
+    onToggle: () => void;
     subject: string;
     teacher: string;
     group: string;
@@ -12,7 +12,7 @@ interface ListProps {
     onRemove: () => void;
 }
 
-export default function ListElement({ active, setActive, subject, teacher, group, variant, onRemove } : ListProps) {
+export default function ListElement({ isVisible, onToggle, subject, teacher, group, variant, onRemove } : ListProps) {
     const isWarning = variant?.includes('repeated');
 
     return (
@@ -22,7 +22,7 @@ export default function ListElement({ active, setActive, subject, teacher, group
             items-stretch
             justify-between
             bg-background
-            ${active? 'opacity-100' : 'opacity-25'}
+            ${isVisible? 'opacity-100' : 'opacity-25'}
             transition-all
             duration-100
         `}>
@@ -55,7 +55,7 @@ export default function ListElement({ active, setActive, subject, teacher, group
                     }
                     cursor-pointer
                 `}
-                onClick={setActive}
+                onClick={onToggle}
             >
                 <p className="text-foreground leading-tight m-0!">
                     {subject}

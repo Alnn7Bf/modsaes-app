@@ -1,17 +1,19 @@
 import GridElement from "../ui/GridElement"
 import type { ScheduleBlock } from "../../types/types";
+import type { RefObject } from "react";
 
 const headers = ['Horario', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 const schedules = ['7:00 - 8:30', '8:30 - 10:00', '10:00 - 11:30', '11:30 - 13:00', '13:00 - 14:30', '14:30 - 16:00', '16:00 - 17:30', '17:30 - 19:00', '19:00 - 20:30', '20:30 - 22:00'];
 
 interface PanelProps {
-    active: string;
+    ref: RefObject<HTMLDivElement | null>;
+    active: string | null;
     scheduleBlocks: ScheduleBlock[];
 }
 
-export default function GridPanel({ active, scheduleBlocks } : PanelProps) {
+export default function GridPanel({ ref, active, scheduleBlocks } : PanelProps) {
     return (
-        <div className="grid grid-cols-7 gap-px grid-rows-[repeat(11,38px)] gap-y-border">
+        <div ref={ref} className="grid grid-cols-7 gap-px grid-rows-[repeat(11,38px)] gap-y-border">
             <div className="grid col-span-7 grid-cols-subgrid bg-primary text-background">
                 {
                     headers.map((day, i) => (
@@ -38,7 +40,7 @@ export default function GridPanel({ active, scheduleBlocks } : PanelProps) {
                     scheduleBlocks.map(schedule => (
                         <GridElement 
                             key={schedule.id}
-                            active={schedule.subjectIds.includes(active) || active === ''}
+                            isVisible={ !active || schedule.subjectIds.includes(active) }
                             variant={schedule.variant}
                             placement={[
                                 schedule.column,
