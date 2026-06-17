@@ -17,12 +17,3 @@
 
     --text-xxs: var(--xxs);
 }
-
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: sans-serif;
-}
