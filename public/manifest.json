@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "ModSAES (IPN SAES Helper)",
     "short_name": "ModSAES",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Mejora tu experiencia en SAES IPN con visualización inteligente de horarios, detección de empalmes y selección dinámica de materias.",
     "icons": {
         "16": "icons/icon16.png",
